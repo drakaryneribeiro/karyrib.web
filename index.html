@@ -337,6 +337,72 @@
     background: linear-gradient(to top, var(--creme) 0%, transparent 100%);
   }
 
+  /* PHOTO CAPTIONS */
+  .photo-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 3;
+    padding: 52px 24px 18px;
+    background: linear-gradient(to top, rgba(45,30,12,0.92) 0%, rgba(45,30,12,0.45) 50%, transparent 100%);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+
+  .photo-caption .pc-line {
+    width: 28px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .photo-caption .pc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px; font-weight: 500;
+    color: var(--gold-light);
+    line-height: 1.2;
+    display: block;
+  }
+
+  .photo-caption .pc-sub {
+    display: block;
+    margin-top: 5px;
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Hero: legenda como assinatura sobre o degradê creme (texto escuro) */
+  .hero-caption {
+    position: absolute;
+    left: 24px; bottom: 22px;
+    z-index: 3;
+  }
+
+  .hero-caption .pc-line {
+    width: 28px; height: 1px;
+    background: var(--gold-dark);
+    margin-bottom: 10px;
+  }
+
+  .hero-caption .pc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--brown-dark);
+    line-height: 1.2;
+    display: block;
+  }
+
+  .hero-caption .pc-sub {
+    display: block;
+    margin-top: 4px;
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .cf-photo-wrap { position: relative; }
+
   /* DIVIDER */
   .divider {
     display: flex; align-items: center; justify-content: center;
@@ -1277,16 +1343,18 @@
 
   /* MOBILE */
   @media (max-width: 1024px) {
-    #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { height: 60vw; }
-    .hero-left { padding: 40px 5%; }
+    #hero { grid-template-columns: 1fr; min-height: auto; padding-top: 0; }
+    .hero-right { height: auto; order: -1; }
+    .hero-photo-wrap { height: auto; aspect-ratio: 4/5; }
+    .hero-photo { object-position: center 15%; }
+    .hero-left { padding: 36px 5% 40px; }
     #sobre { grid-template-columns: 1fr; padding: 60px 5%; gap: 40px; }
     .sobre-photo-col { order: -1; }
-    .sobre-photo { aspect-ratio: 4/3; }
+    .sobre-photo { aspect-ratio: 2/3; object-position: center center; }
     .sobre-gold-tag { bottom: -10px; right: 10px; }
     .areas-grid { grid-template-columns: repeat(2, 1fr); }
     #como-funciona { grid-template-columns: 1fr; padding: 60px 5%; gap: 40px; }
-    .cf-photo { aspect-ratio: 4/3; box-shadow: none; }
+    .cf-photo { aspect-ratio: 2/3; object-position: center center; box-shadow: none; }
     .dif-grid { grid-template-columns: repeat(3, 1fr); }
     .inv-grid { grid-template-columns: 1fr; }
     .inv-grid-plans { grid-template-columns: 1fr; }
@@ -1314,7 +1382,6 @@
     .areas-grid { grid-template-columns: 1fr; }
     .dif-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr; }
-    .hero-right { height: 80vw; }
     .inv-card { padding: 24px 18px; }
   }
 </style>
@@ -1352,10 +1419,6 @@
   <div class="hero-ornament-2"></div>
 
   <div class="hero-left">
-    <div class="fade-up fade-up-d1" style="margin-bottom:28px;">
-      <img src="./images/IMG_1905.webp" alt="Dra. Karyne Ribeiro — Médica Saúde Mental" style="height:130px;object-fit:contain;object-position:left center;" />
-    </div>
-
     <h1 class="hero-title fade-up fade-up-d2">
       Saúde mental vai além<br>
       da <em>ausência de sintomas.</em>
@@ -1395,6 +1458,11 @@
         class="hero-photo"
       />
       <div class="hero-photo-overlay"></div>
+      <div class="hero-caption">
+        <div class="pc-line"></div>
+        <span class="pc-title">Dra. Karyne Ribeiro</span>
+        <span class="pc-sub">Médica · CREMEC 23471</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1408,6 +1476,11 @@
         alt="Dra. Karyne Ribeiro em consulta"
         class="sobre-photo"
       />
+      <div class="photo-caption">
+        <div class="pc-line"></div>
+        <span class="pc-title">Abordagem humana e individualizada</span>
+        <span class="pc-sub">Saúde Mental</span>
+      </div>
     </div>
   </div>
 
@@ -1614,12 +1687,17 @@
     </div>
   </div>
 
-  <div>
+  <div class="cf-photo-wrap">
     <img
       src="./images/karyne-_28_of_69_.webp"
       alt="Dra. Karyne Ribeiro"
       class="cf-photo"
     />
+    <div class="photo-caption">
+      <div class="pc-line"></div>
+      <span class="pc-title">Primeira consulta</span>
+      <span class="pc-sub">60 a 90 minutos</span>
+    </div>
   </div>
 </section>
 
@@ -1919,8 +1997,8 @@
 
     <div>
       <div class="footer-col-title">Modalidades</div>
-      <a href="https://wa.me/5585985696333" class="footer-link">Consulta Online</a>
-      <a href="https://wa.me/5585985696333" class="footer-link">Consulta Presencial</a>
+      <a href="https://wa.me/5585985696333" class="footer-link">Consulta Online — R$300</a>
+      <a href="https://wa.me/5585985696333" class="footer-link">Consulta Presencial — R$350</a>
     </div>
 
     <div>
